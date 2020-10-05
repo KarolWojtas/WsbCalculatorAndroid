@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">Calculator</string>
+    <string name="digitSeven">7</string>
+    <string name="digitEight">8</string>
+    <string name="digitNine">9</string>
+    <string name="operatorPlus">+</string>
+    <string name="digitFour">4</string>
+    <string name="btnFive">5</string>
+    <string name="digitSix">6</string>
+    <string name="operatorMinus">-</string>
+</resources>
