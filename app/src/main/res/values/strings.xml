@@ -8,4 +8,8 @@
     <string name="btnFive">5</string>
     <string name="digitSix">6</string>
     <string name="operatorMinus">-</string>
+    <string name="operatorCancel">C</string>
+    <string name="operatorMultiply">*</string>
+    <string name="operatorDivide">/</string>
+    <string name="operatorEquals">=</string>
 </resources>
