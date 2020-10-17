@@ -26,9 +26,13 @@ class MainViewModel: ViewModel() {
     val enteredNumber: LiveData<String>
     get() = _enteredNumber
 
-    private fun addNumber(value: Number){
-        // if(_nodes.value?.size == 1)
-        addNode(NumberNode(value))
+    val canEnterDigit: LiveData<Boolean> = _nodes.map {
+        val lastNode = it.lastOrNull()
+        lastNode is OperatorNode || it.isEmpty()
+    }
+
+    private fun addNumber(value: Number, isCalculated: Boolean = false){
+        addNode(NumberNode(value, isCalculated))
     }
 
     /**
@@ -66,19 +70,27 @@ class MainViewModel: ViewModel() {
      * present
      */
     fun equals(){
-        addOperator("=")
-        _nodes.value?.let {
+        _nodes.value?.let { nodes ->
+            val lastNode = nodes.last()
+            // break if last node is a result, use has to enter something after calculating
+            if(lastNode is NumberNode && lastNode.isCalculated)
+                return
+            _enteredNumber.value?.toInt()?.let { addNumber(it) }
+            // find last "=" index
+            val lastEqualsIndex = nodes.indexOfLast { it.value == "=" }
+            val lastOperationChain = nodes.filterIndexed { index, _ ->  index > lastEqualsIndex}
+            addNode(OperatorNode("="))
             var currentOperator: OperatorNode? = null
             var accumulator = 0.0
-            for ( nodeIx in it.indices){
-                val currentNode = it[nodeIx]
+            for ( nodeIx in lastOperationChain.indices){
+                val currentNode = lastOperationChain[nodeIx]
                 if(currentNode is OperatorNode){
                     currentOperator = currentNode
                 } else if (currentNode is NumberNode){
                     accumulator = currentOperator?.calculate(accumulator, currentNode.value.toDouble())?:currentNode.value.toDouble()
                 }
             }
-            addNumber(if(accumulator % 1 != 0.0) accumulator else accumulator.toInt())
+            addNumber(if(accumulator % 1 != 0.0) accumulator else accumulator.toInt(), true)
             _enteredNumber.value = defaultEnteredValue
         }
 

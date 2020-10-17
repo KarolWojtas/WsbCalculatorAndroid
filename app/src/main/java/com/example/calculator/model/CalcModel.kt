@@ -19,12 +19,7 @@ abstract class CalcNode<out T> (val value: T){
 
 }
 
-class NumberNode(value: Number) : CalcNode<Number>(value){
-    companion object {
-        val zero: NumberNode
-        get() = NumberNode(0)
-    }
-}
+class NumberNode(value: Number, val isCalculated: Boolean = false) : CalcNode<Number>(value)
 
 class OperatorNode(value: String): CalcNode<String>(value) {
     private val availableOperations: List<String> = OperatorTypes.values().map { it.value }
@@ -34,7 +29,7 @@ class OperatorNode(value: String): CalcNode<String>(value) {
             OperatorTypes.plus.value -> a + b
             OperatorTypes.minus.value -> a - b
             OperatorTypes.multiply.value -> a * b
-            OperatorTypes.divide.value -> a / b
+            OperatorTypes.divide.value -> if(b != 0.0) a / b else a
             else -> a
         }
     }
