@@ -9,8 +9,7 @@ import com.example.calculator.model.NumberNode
 import com.example.calculator.model.OperatorNode
 
 class MainViewModel: ViewModel() {
-    val mock = "halko"
-    private val _nodes: MutableLiveData<MutableList<CalcNode<Any>>> = MutableLiveData(mutableListOf(NumberNode.zero))
+    private val _nodes: MutableLiveData<MutableList<CalcNode<Any>>> = MutableLiveData(mutableListOf())
 
     val nodes: LiveData<MutableList<CalcNode<Any>>>
     get() = _nodes
@@ -19,12 +18,22 @@ class MainViewModel: ViewModel() {
         _nodes.value = _nodes.value?.apply { add(node) }
     }
 
+    private val _enteredNumber: MutableLiveData<String> = MutableLiveData("0")
+
+    val enteredNumber: LiveData<String>
+    get() = _enteredNumber
+
     fun addNumber(value: Number){
+        if(_nodes.value?.size == 1)
         addNode(NumberNode(value))
     }
 
     fun addOperator(value: String){
         addNode(OperatorNode(value))
+    }
+
+    fun appendDigit(value: Number){
+        _enteredNumber.value = if(_enteredNumber.value == "0") value.toString() else _enteredNumber.value+value
     }
 
     val nodesLiteral = nodes.map {

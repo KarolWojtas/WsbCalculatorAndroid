@@ -12,4 +12,8 @@
     <string name="operatorMultiply">*</string>
     <string name="operatorDivide">/</string>
     <string name="operatorEquals">=</string>
+    <string name="digitOne">1</string>
+    <string name="digitTwo">2</string>
+    <string name="digitThree">3</string>
+    <string name="digitZero">0</string>
 </resources>

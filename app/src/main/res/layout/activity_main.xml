@@ -20,6 +20,7 @@
             android:layout_marginTop="32dp"
             android:background="#BABABA"
             android:gravity="end"
+            android:text="@{model.enteredNumber}"
             android:textSize="36sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -30,10 +31,11 @@
         <Button
             android:id="@+id/btnSeven"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="0dp"
             android:layout_marginTop="32dp"
+            android:onClick="@{() -> model.appendDigit(7)}"
             android:text="@string/digitSeven"
-            android:onClick="@{() -> model.addNumber(7)}"
+            app:layout_constraintBottom_toTopOf="@+id/btnFour"
             app:layout_constraintEnd_toStartOf="@+id/btnEight"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintHorizontal_chainStyle="spread"
@@ -43,42 +45,49 @@
         <Button
             android:id="@+id/btnEight"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="0dp"
+            android:layout_marginTop="32dp"
+            android:onClick="@{() -> model.appendDigit(8)}"
             android:text="@string/digitEight"
-            android:onClick="@{() -> model.addNumber(8)}"
+            app:layout_constraintBottom_toTopOf="@+id/btnFive"
             app:layout_constraintEnd_toStartOf="@+id/btnNine"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toEndOf="@+id/btnSeven"
-            app:layout_constraintTop_toTopOf="@+id/btnSeven" />
+            app:layout_constraintTop_toBottomOf="@+id/mainWindow" />
 
         <Button
             android:id="@+id/btnNine"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="0dp"
+            android:layout_marginTop="32dp"
+            android:onClick="@{() -> model.appendDigit(9)}"
             android:text="@string/digitNine"
-            android:onClick="@{() -> model.addNumber(9)}"
+            app:layout_constraintBottom_toTopOf="@+id/btnSix"
             app:layout_constraintEnd_toStartOf="@+id/buttonPlus"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toEndOf="@+id/btnEight"
-            app:layout_constraintTop_toTopOf="@+id/btnSeven" />
+            app:layout_constraintTop_toBottomOf="@+id/mainWindow" />
 
         <Button
             android:id="@+id/buttonPlus"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:text="@string/operatorPlus"
+            android:layout_height="0dp"
+            android:layout_marginTop="32dp"
             android:onClick="@{() -> model.addOperator(`+`)}"
+            android:text="@string/operatorPlus"
+            app:layout_constraintBottom_toTopOf="@+id/operatorMinus"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toEndOf="@+id/btnNine"
-            app:layout_constraintTop_toTopOf="@+id/btnSeven" />
+            app:layout_constraintTop_toBottomOf="@+id/mainWindow" />
 
         <Button
             android:id="@+id/btnFour"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="0dp"
+            android:onClick="@{() -> model.appendDigit(4)}"
             android:text="@string/digitFour"
-            android:onClick="@{() -> model.addNumber(4)}"
+            app:layout_constraintBottom_toTopOf="@+id/btnOne"
             app:layout_constraintEnd_toStartOf="@+id/btnFive"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
@@ -87,91 +96,146 @@
         <Button
             android:id="@+id/btnFive"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="0dp"
+            android:onClick="@{() -> model.appendDigit(5)}"
             android:text="@string/btnFive"
-            android:onClick="@{() -> model.addNumber(5)}"
+            app:layout_constraintBottom_toTopOf="@+id/btnTwo"
             app:layout_constraintEnd_toStartOf="@+id/btnSix"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toEndOf="@+id/btnFour"
-            app:layout_constraintTop_toTopOf="@+id/btnFour" />
+            app:layout_constraintTop_toBottomOf="@+id/btnEight" />
 
         <Button
             android:id="@+id/btnSix"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="0dp"
+            android:onClick="@{() -> model.appendDigit(6)}"
             android:text="@string/digitSix"
-            android:onClick="@{() -> model.addNumber(6)}"
+            app:layout_constraintBottom_toTopOf="@+id/btnThree"
             app:layout_constraintEnd_toStartOf="@+id/operatorMinus"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toEndOf="@+id/btnFive"
-            app:layout_constraintTop_toTopOf="@+id/btnFive" />
+            app:layout_constraintTop_toBottomOf="@+id/btnNine" />
 
         <Button
             android:id="@+id/operatorMinus"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:text="@string/operatorMinus"
+            android:layout_height="0dp"
             android:onClick="@{() -> model.addOperator(`-`)}"
+            android:text="@string/operatorMinus"
+            app:layout_constraintBottom_toTopOf="@+id/btnCancel"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toEndOf="@+id/btnSix"
-            app:layout_constraintTop_toTopOf="@+id/btnSix" />
+            app:layout_constraintTop_toBottomOf="@+id/buttonPlus" />
 
         <Button
-            android:id="@+id/btnCancel"
+            android:id="@+id/btnZero"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:text="@string/operatorCancel"
+            android:layout_height="0dp"
+            android:onClick="@{() -> model.appendDigit(0)}"
+            android:text="@string/digitZero"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/btnMultiply"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/btnFour" />
+            app:layout_constraintTop_toBottomOf="@+id/btnOne" />
 
         <Button
             android:id="@+id/btnMultiply"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:text="@string/operatorMultiply"
+            android:layout_height="0dp"
             android:onClick="@{() -> model.addOperator(`*`)}"
+            android:text="@string/operatorMultiply"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/btnDivide"
             app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toEndOf="@+id/btnCancel"
-            app:layout_constraintTop_toTopOf="@+id/btnCancel" />
+            app:layout_constraintStart_toEndOf="@+id/btnZero"
+            app:layout_constraintTop_toTopOf="@+id/btnZero" />
 
         <Button
             android:id="@+id/btnDivide"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:text="@string/operatorDivide"
+            android:layout_height="0dp"
             android:onClick="@{() -> model.addOperator(`/`)}"
+            android:text="@string/operatorDivide"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/btnEquals"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toEndOf="@+id/btnMultiply"
-            app:layout_constraintTop_toTopOf="@+id/btnCancel" />
+            app:layout_constraintTop_toTopOf="@+id/btnZero" />
 
         <Button
             android:id="@+id/btnEquals"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:text="@string/operatorEquals"
+            android:layout_height="0dp"
             android:onClick="@{() -> model.addOperator(`=`)}"
+            android:text="@string/operatorEquals"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toEndOf="@+id/btnDivide"
-            app:layout_constraintTop_toTopOf="@+id/btnCancel" />
+            app:layout_constraintTop_toTopOf="@+id/btnZero" />
 
         <TextView
             android:id="@+id/nodesWindow"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
-            android:textSize="30sp"
             android:text="@{model.nodesLiteral}"
+            android:textSize="30sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.0" />
+
+        <Button
+            android:id="@+id/btnOne"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:onClick="@{() -> model.appendDigit(1)}"
+            android:text="@string/digitOne"
+            app:layout_constraintBottom_toTopOf="@+id/btnZero"
+            app:layout_constraintEnd_toStartOf="@+id/btnTwo"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/btnFour" />
+
+        <Button
+            android:id="@+id/btnTwo"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:onClick="@{() -> model.appendDigit(2)}"
+            android:text="@string/digitTwo"
+            app:layout_constraintBottom_toTopOf="@+id/btnMultiply"
+            app:layout_constraintEnd_toStartOf="@+id/btnThree"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/btnOne"
+            app:layout_constraintTop_toBottomOf="@+id/btnFive" />
+
+        <Button
+            android:id="@+id/btnThree"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:onClick="@{() -> model.appendDigit(3)}"
+            android:text="@string/digitThree"
+            app:layout_constraintBottom_toTopOf="@+id/btnDivide"
+            app:layout_constraintEnd_toStartOf="@+id/btnCancel"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/btnTwo"
+            app:layout_constraintTop_toBottomOf="@+id/btnSix" />
+
+        <Button
+            android:id="@+id/btnCancel"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:text="@string/operatorCancel"
+            app:layout_constraintBottom_toTopOf="@+id/btnEquals"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/btnThree"
+            app:layout_constraintTop_toBottomOf="@+id/operatorMinus" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
